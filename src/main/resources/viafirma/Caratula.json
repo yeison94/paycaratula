@@ -1,0 +1,33 @@
+{
+  "title" : "My awesome form",
+  "version" : "0.1",
+  "settings" : {
+    "policies" : [ {
+      "evidences" : [ {
+        "type" : "SIGNATURE",
+        "id" : "evidence_267",
+        "enabled" : true,
+        "visible" : true,
+        "helpText" : "Cliente",
+        "positions" : [ {
+          "rectangle" : {
+            "x" : 42,
+            "y" : 163,
+            "width" : 205,
+            "height" : 61
+          },
+          "page" : 1
+        } ],
+        "typeFormatSign" : "XADES_B",
+        "ocr" : {
+          "key" : ""
+        }
+      } ],
+      "signatures" : [ {
+        "type" : "SERVER",
+        "typeFormatSign" : "PADES_B",
+        "lastUpdated" : 0
+      } ]
+    } ]
+  }
+}

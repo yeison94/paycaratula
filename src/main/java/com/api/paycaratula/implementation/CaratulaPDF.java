@@ -10,6 +10,7 @@ import reactor.core.publisher.Mono;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class CaratulaPDF {
     final String template_jasper = "caratulatemplate.jrxml";
     final String reportPath = "src/main/resources/caratulas/";
 
-    public Mono<Void> generar(Caratula caratula) throws IOException, JRException {
+    public Mono<String> generar(Caratula caratula) throws IOException, JRException {
 
         File file = ResourceUtils.getFile("classpath:"+template_jasper);
 
@@ -63,8 +64,12 @@ public class CaratulaPDF {
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, source);
         JasperExportManager.exportReportToPdfFile(jasperPrint, reportPath + "Caratula_"+caratula.getTomador().getIdenTomador()+".pdf");
+        byte[] pdfBytes = JasperExportManager.exportReportToPdf(jasperPrint);
+
         System.out.println("PDF File Generated !!");
 
-        return Mono.empty().then();
+
+
+        return Mono.just(Base64.getEncoder().encodeToString(pdfBytes));
     }
 }

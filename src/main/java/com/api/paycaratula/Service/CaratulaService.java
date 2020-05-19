@@ -15,10 +15,9 @@ public class CaratulaService {
     @Autowired
     private CaratulaPDF caratulaPDF;
 
-    public Mono<Void> generar(Caratula caratula) throws IOException, JRException {
+    public Mono<String> generar(Caratula caratula) throws IOException, JRException {
 
-        return caratulaPDF.generar(caratula)
-                .then();
+        return caratulaPDF.generar(caratula);
 
     }
 }
